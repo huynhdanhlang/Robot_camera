@@ -14,3 +14,6 @@
 - Mini breadboard
 - Car chassis and wheels
 - Bluetooth HC-05
+- 2x Smartphone
+## Control 
+- Download app [here](https://play.google.com/store/apps/details?id=com.neco.desarrollo.videocontrol_free)
