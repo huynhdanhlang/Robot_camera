@@ -9,6 +9,7 @@
 #define IN3  3
 #define IN4  2
 
+//Kieu di chuyen dong co buoc(cap 2 pha chay cung luc)
 int Paso [ 4 ][ 4 ] =
    {  {1, 1, 0, 0},
       {0, 1, 1, 0},
@@ -67,30 +68,35 @@ void loop() {
     if(ch=='A'){
 
    ad();
+   //Xe di thang
  
   
   
  } if(ch=='B'){
   
    iz();
+   //Xe sang trai
+
   
   
  }if(ch=='C'){
    
    dch();
+   //xe sang phai
    
   
  }
  if(ch=='D'){
    
    st();
+   //Xe dung
    
   
  }
   if(ch=='E'){
  
    at();
-   
+   //Xe lui
    
   
  }  if(ch=='F'){
@@ -202,7 +208,7 @@ void loop() {
 void dch(){
    digitalWrite(4,HIGH);
   //digitalWrite(13,HIGH);
-   digitalWrite(9,velDerecha);
+   analogWrite(9,velDerecha);
    analogWrite(10,LOW);
    digitalWrite(11,LOW);
 
@@ -227,6 +233,7 @@ void dch(){
  
   
   }  
+  //Quay dong buoc co sang trai
   void stepperIzquierda()            //Avanza un paso
    {  digitalWrite( IN1, Paso[Steps][ 0] );
       digitalWrite( IN2, Paso[Steps][ 1] );
@@ -238,6 +245,7 @@ void dch(){
 
           Serial.println(Steps);
    }
+   //Quay dong co buoc sang phai
      void stepperDerecha()            //Avanza un paso
    {  digitalWrite( IN4, Paso[Steps][ 0] );
       digitalWrite( IN3, Paso[Steps][ 1] );
@@ -250,6 +258,7 @@ void dch(){
           Steps = ( Steps + 4) % 4 ;
           Serial.println(Steps);
    }
+   //Dung dong co buoc
    void lowAllPaso(){
       digitalWrite(4,HIGH);
     //  digitalWrite(13,HIGH);
@@ -258,6 +267,8 @@ void dch(){
       digitalWrite( IN2, LOW );
       digitalWrite( IN1, LOW);
     }  
+
+    //Nhan vi tri cua dong co buoc hien tai
      void calcularZeroCamera(boolean vaDerecha){
       if(vaDerecha){
        
@@ -290,6 +301,7 @@ void dch(){
       
  }
   
+//Quay ve 0
     
    void volverToZero(){
      //Si paso izquierda superior de paso derecha 
@@ -298,6 +310,7 @@ if(pasoIzquierda>pasoDerecha){
     if(pasoIzquierda<1024){
 for(int i=0;i<pasoIzquierda;i++){
     stepperDerecha();
+    //Sang phai
     delay(velGiro);
   }
    pasoDerecha=0;
@@ -309,6 +322,7 @@ else{
    //Si paso Izquierda mayor que 1024 volvemos por la Izquierda
   for(int i=0;i<2048-pasoIzquierda;i++){
     stepperIzquierda();
+    //Sang trai
     delay(velGiro);
   }
    pasoDerecha=0;
@@ -340,6 +354,10 @@ else{
   }
 }
 }
+
+
+//Quay ve vi tri truoc do
+
    void volverToMarchaAtras(){
    //Si paso izquierda superior de paso derecha 
   if(pasoIzquierda>pasoDerecha){
